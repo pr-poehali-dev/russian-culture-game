@@ -1,5 +1,49 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Icon from "@/components/ui/icon";
+
+function useGameSounds() {
+  const playCorrect = useCallback(() => {
+    const AudioCtx = window.AudioContext || (window as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const t = ctx.currentTime;
+    [523.25, 659.25, 783.99].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = "sine";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, t + i * 0.12);
+      gain.gain.linearRampToValueAtTime(0.18, t + i * 0.12 + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.12 + 0.35);
+      osc.start(t + i * 0.12);
+      osc.stop(t + i * 0.12 + 0.35);
+    });
+  }, []);
+
+  const playWrong = useCallback(() => {
+    const AudioCtxW = window.AudioContext || (window as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!AudioCtxW) return;
+    const ctx = new AudioCtxW();
+    const t = ctx.currentTime;
+    [220, 196].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = "sawtooth";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, t + i * 0.18);
+      gain.gain.linearRampToValueAtTime(0.12, t + i * 0.18 + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.18 + 0.4);
+      osc.start(t + i * 0.18);
+      osc.stop(t + i * 0.18 + 0.4);
+    });
+  }, []);
+
+  return { playCorrect, playWrong };
+}
 
 type Screen = "home" | "rules" | "game" | "question" | "results";
 
@@ -197,6 +241,7 @@ export default function Index() {
   const [answers, setAnswers] = useState<Record<number, boolean>>({});
   const [picked, setPicked] = useState<"true" | "false" | null>(null);
 
+  const { playCorrect, playWrong } = useGameSounds();
   const score = Object.values(answers).filter(Boolean).length;
   const totalAnswered = Object.keys(answers).length;
 
@@ -212,6 +257,7 @@ export default function Index() {
     setPicked(answer);
     const correct = (answer === "true") === currentQuestion.isTrue;
     setAnswers(prev => ({ ...prev, [currentQuestion.id]: correct }));
+    if (correct) playCorrect(); else playWrong();
   };
 
   const handleNext = () => {
