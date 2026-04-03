@@ -351,7 +351,7 @@ export default function Index() {
 
           <div className="rounded-sm overflow-hidden mb-8 animate-fadeInUp delay-400" style={{ opacity: 0, border: '1px solid rgba(201,162,39,0.2)' }}>
             <img
-              src={KREMLIN_IMG}
+              src={IMG.q1}
               alt="Древнерусская архитектура"
               className="w-full h-48 object-cover"
               style={{ filter: 'brightness(0.75) saturate(0.8)' }}
