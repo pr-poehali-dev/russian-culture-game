@@ -59,7 +59,7 @@ interface Question {
 
 const MONASTERY_IMG = "https://cdn.poehali.dev/projects/02c8d8da-a831-4034-bb87-c296f961b13f/files/86b19de6-f659-4653-899c-b1b95e2e14d5.jpg";
 const KREMLIN_IMG = "https://cdn.poehali.dev/projects/02c8d8da-a831-4034-bb87-c296f961b13f/files/98a7473e-a9c6-4084-84e9-91088d107e13.jpg";
-const CHURCH_IMG = "https://cdn.poehali.dev/projects/02c8d8da-a831-4034-bb87-c296f961b13f/files/5223bacc-dcce-43ab-b82 6-d0ab14e0a18e.jpg";
+const CHURCH_IMG = "https://cdn.poehali.dev/projects/02c8d8da-a831-4034-bb87-c296f961b13f/files/5223bacc-dcce-43ab-b826-d0ab14e0a18e.jpg";
 
 const QUESTIONS: Question[] = [
   {
