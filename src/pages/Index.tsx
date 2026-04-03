@@ -326,13 +326,19 @@ export default function Index() {
               Викторина · XIV–XV века
             </p>
             <h1
-              className="text-4xl md:text-5xl font-bold mb-3 animate-fadeInUp delay-200"
+              className="text-4xl md:text-5xl font-bold mb-2 animate-fadeInUp delay-200"
               style={{ color: '#E8C547', fontFamily: "'Cormorant SC', serif", letterSpacing: '0.05em', opacity: 0 }}
             >
-              Древняя Русь
+              Архитектура Руси
             </h1>
+            <p
+              className="text-base mb-2 animate-fadeInUp delay-300"
+              style={{ color: '#9A7A3A', fontFamily: "'Cormorant SC', serif", letterSpacing: '0.15em', opacity: 0 }}
+            >
+              XIV — XV вв.
+            </p>
             <h2
-              className="text-xl md:text-2xl animate-fadeInUp delay-300"
+              className="text-xl md:text-2xl animate-fadeInUp delay-400"
               style={{ color: '#D4B870', fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', opacity: 0 }}
             >
               Правда или Ложь
